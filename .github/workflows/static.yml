@@ -1,0 +1,152 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '.'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>रंग पूर्वानुमान गेम - Color Trading</title>
+    <style>
+        /* Basic Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* Landing Page Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+        }
+
+        .header {
+            padding: 20px;
+            text-align: center;
+            background: rgba(0,0,0,0.7);
+        }
+
+        .hero {
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 40px 20px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .feature-card {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .cta-button {
+            background: #f1c40f;
+            color: #2c3e50;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 20px;
+        }
+
+        .legal-warning {
+            background: #ff4757;
+            padding: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- हेडर सेक्शन -->
+    <header class="header">
+        <h1>🎨 ColorMaster</h1>
+        <p>भारत का #1 रंग ट्रेडिंग प्लेटफॉर्म</p>
+    </header>
+
+    <!-- हीरो सेक्शन -->
+    <section class="hero">
+        <h2>खेलो और जीतो ₹10,000 रोजाना!</h2>
+        <p>नया यूजर? पाओ ₹100 फ्री बोनस</p>
+        <button class="cta-button" onclick="startGame()">अभी खेलें</button>
+    </section>
+
+    <!-- फीचर्स सेक्शन -->
+    <section class="features">
+        <div class="feature-card">
+            <h3>⚡ तेज भुगतान</h3>
+            <p>UPI, Paytm, PhonePe से इंस्टेंट पैसे निकालें</p>
+        </div>
+        <div class="feature-card">
+            <h3>🔒 100% सुरक्षित</h3>
+            <p>SSL एन्क्रिप्शन और KYC वेरिफाइड</p>
+        </div>
+        <div class="feature-card">
+            <h3>🎮 50+ गेम्स</h3>
+            <p>रंग पूर्वानुमान, रमी, टीन पत्ती और भी बहुत कुछ</p>
+        </div>
+    </section>
+
+    <!-- लीगल वार्निंग -->
+    <div class="legal-warning">
+        ⚠️ चेतावनी: यह एक डेमो वेबसाइट है। असली पैसे का उपयोग न करें।
+    </div>
+
+    <!-- बेसिक जावास्क्रिप्ट -->
+    <script>
+        function startGame() {
+            const isVerified = confirm("क्या आप 18+ हैं?");
+            if(isVerified) {
+                window.location.href = "#game"; // गेम पेज लिंक
+            } else {
+                alert("कृपया KYC पूरा करें!");
+            }
+        }
+    </script>
+</body>
+</html>
